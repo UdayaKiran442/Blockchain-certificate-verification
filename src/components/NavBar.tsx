@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 
 const NavBar = () => {
   return (
-    <div>
+    <div className="fixed w-full">
       <div className="flex justify-between p-2 bg-[#fbfbfb] shadow-md">
         {/* logo */}
         <div>
