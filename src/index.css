@@ -10,3 +10,13 @@
     #d6f0fd 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
+
+.academic-gradient {
+  background: rgb(235, 250, 254);
+  background: linear-gradient(
+    180deg,
+    rgba(235, 250, 254, 1) 23%,
+    rgba(231, 244, 255, 1) 59%,
+    rgba(242, 230, 252, 1) 83%
+  );
+}

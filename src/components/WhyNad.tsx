@@ -7,7 +7,7 @@ const WhyNad = () => {
     <div className="flex gap-10 p-10 mt-6 justify-center ">
       {/* why nad text */}
       <div>
-        <SectionHeadings heading="Why NAD?" />
+        <SectionHeadings heading="Why NAD?" textCenter="" />
         <p className="mt-4 font-light">
           National Academic Depository (NAD) is born out of an initiative to{" "}
           <br />

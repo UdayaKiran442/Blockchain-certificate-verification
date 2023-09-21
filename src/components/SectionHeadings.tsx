@@ -1,7 +1,13 @@
-const SectionHeadings = ({ heading }: { heading: string }) => {
+const SectionHeadings = ({
+  heading,
+  textCenter,
+}: {
+  heading: string;
+  textCenter: string;
+}) => {
   return (
     <div>
-      <h2 className="text-3xl font-bold">{heading}</h2>
+      <h2 className={`text-3xl font-bold ${textCenter}`}>{heading}</h2>
     </div>
   );
 };

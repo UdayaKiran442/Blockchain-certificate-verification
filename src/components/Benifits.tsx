@@ -11,7 +11,7 @@ const Benifits = () => {
     <div className="flex justify-center bg-secondaryWhite p-5 ">
       {/* section heading and text */}
       <div>
-        <SectionHeadings heading="Benifits of NAD" />
+        <SectionHeadings heading="Benifits of NAD" textCenter="" />
         <p className="mt-4 font-light">
           Aimed at the concept of paperless governance. It reduces the <br />
           administrative overhead by minimizing the use of paper and curtailing{" "}
