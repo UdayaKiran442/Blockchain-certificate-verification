@@ -4,7 +4,7 @@ import SectionHeadings from "./SectionHeadings";
 
 const WhyNad = () => {
   return (
-    <div className="flex gap-10 p-10 mt-6 justify-center ">
+    <div className="flex gap-10  mt-6 justify-center">
       {/* why nad text */}
       <div>
         <SectionHeadings heading="Why NAD?" textCenter="" />

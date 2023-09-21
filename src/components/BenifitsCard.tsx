@@ -6,7 +6,7 @@ interface props {
 
 const BenifitsCard = ({ heading, text, image }: props) => {
   return (
-    <div className="bg-white border-2 rounded-2xl p-5 w-[300px] h-[250px]">
+    <div className="bg-white border-2 rounded-2xl p-5 w-[250px] h-[250px]">
       <div>
         {/* benifit image */}
         <img src={image} alt="" width={50} height={50} />
