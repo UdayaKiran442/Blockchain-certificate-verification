@@ -1,3 +1,4 @@
+import Benifits from "../components/Benifits";
 import Hero from "../components/Hero";
 import WhyNad from "../components/WhyNad";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Hero />
       <WhyNad />
+      <Benifits />
     </div>
   );
 };
