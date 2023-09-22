@@ -23,9 +23,9 @@ const Academia = () => {
         text=" Now publish your student's academic awards easily!"
       />
       <HowToPublish
-        fill={fill}
-        register={register}
-        publish={publish}
+        cardImg2={fill}
+        cardImg1={register}
+        cardImg3={publish}
         card1Title="Register"
         card1Text="Register your academic institution by connecting wallet to NAD"
         card2Text="Fill the form with student details"
@@ -35,10 +35,10 @@ const Academia = () => {
         title="How to Publish"
       />
       <AcademiaBenifits
-        authenticated={authenticated}
-        award={award}
-        secure={secure}
-        transparency={transparency}
+        cardImg4={authenticated}
+        cardImg1={award}
+        cardImg2={secure}
+        cardImg3={transparency}
         benifitHeading1="Valid Awards"
         benifitText1="Digital Awards are legally valid under IT Act, 2000"
         benifitHeading2="Secure"

@@ -11,10 +11,10 @@ interface props {
   benifitText3: string;
   benifitHeading4: string;
   benifitText4: string;
-  award: string;
-  secure: string;
-  transparency: string;
-  authenticated: string;
+  cardImg1: string;
+  cardImg2: string;
+  cardImg3: string;
+  cardImg4: string;
 }
 
 const AcademiaBenifits = ({
@@ -27,10 +27,10 @@ const AcademiaBenifits = ({
   benifitText3,
   benifitHeading4,
   benifitText4,
-  award,
-  secure,
-  transparency,
-  authenticated,
+  cardImg1,
+  cardImg2,
+  cardImg3,
+  cardImg4,
 }: props) => {
   return (
     <div className="-mt-8">
@@ -39,22 +39,22 @@ const AcademiaBenifits = ({
         <BenifitsCard
           heading={benifitHeading1}
           text={benifitText1}
-          image={award}
+          image={cardImg1}
         />
         <BenifitsCard
           heading={benifitHeading2}
           text={benifitText2}
-          image={secure}
+          image={cardImg2}
         />
         <BenifitsCard
           heading={benifitHeading3}
           text={benifitText3}
-          image={transparency}
+          image={cardImg3}
         />
         <BenifitsCard
           heading={benifitHeading4}
           text={benifitText4}
-          image={authenticated}
+          image={cardImg4}
         />
       </div>
     </div>

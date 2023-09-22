@@ -5,9 +5,9 @@ import PublishCard from "./PublishCard";
 
 interface props {
   title: string;
-  register: string;
-  fill: string;
-  publish: string;
+  cardImg1: string;
+  cardImg2: string;
+  cardImg3: string;
   card1Title: string;
   card1Text: string;
   card2Title: string;
@@ -18,9 +18,9 @@ interface props {
 
 const HowToPublish = ({
   title,
-  register,
-  fill,
-  publish,
+  cardImg1,
+  cardImg2,
+  cardImg3,
   card1Title,
   card1Text,
   card2Title,
@@ -36,11 +36,11 @@ const HowToPublish = ({
       </div>
       <div className="p-5 flex items-center justify-around">
         {/* steps to publish */}
-        <PublishCard img={register} text={card1Text} title={card1Title} />
+        <PublishCard img={cardImg1} text={card1Text} title={card1Title} />
         <AiOutlineArrowRight />
-        <PublishCard img={fill} text={card2Text} title={card2Title} />
+        <PublishCard img={cardImg2} text={card2Text} title={card2Title} />
         <AiOutlineArrowRight />
-        <PublishCard img={publish} text={card3Text} title={card3Title} />
+        <PublishCard img={cardImg3} text={card3Text} title={card3Title} />
       </div>
     </div>
   );
