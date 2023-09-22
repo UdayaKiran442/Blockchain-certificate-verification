@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 
@@ -8,25 +8,49 @@ const NavBar = () => {
       <div className="flex justify-between p-2 bg-[#fbfbfb] shadow-md">
         {/* logo */}
         <div>
-          <Link to="/">
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "text-primaryBlue" : "")}
+          >
             <img src={logo} alt="" width={250} height={250} />
-          </Link>
+          </NavLink>
         </div>
         {/* navlinks */}
         <div className="flex gap-8 items-center">
           <ul>
             <li>
-              <Link to="/academia">Academia</Link>
+              <NavLink
+                to="/academia"
+                className={({ isActive }) =>
+                  isActive ? "text-primaryBlue" : ""
+                }
+              >
+                Academia
+              </NavLink>
             </li>
           </ul>
           <ul>
             <li>
-              <Link to="/student">Student</Link>
+              <NavLink
+                to="/student"
+                className={({ isActive }) =>
+                  isActive ? "text-primaryBlue" : ""
+                }
+              >
+                Student
+              </NavLink>
             </li>
           </ul>
           <ul>
             <li>
-              <Link to="/verifier">Verifier</Link>
+              <NavLink
+                to="/verifier"
+                className={({ isActive }) =>
+                  isActive ? "text-primaryBlue" : ""
+                }
+              >
+                Verifier
+              </NavLink>
             </li>
           </ul>
           <ul>
