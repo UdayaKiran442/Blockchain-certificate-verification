@@ -16,19 +16,18 @@ const UploadData = () => {
       complete: (result) => {
         setCsvData(result.data as CsvRow[]);
         console.log("Result", result);
-        // const columnsArr = [];
-        // const valuesArr = [];
-        // result.data.map((d) => {
-        //   columnsArr.push(Object.keys(d));
-        //   valuesArr.push(Object.keys[d]);
-        // });
       },
     });
     console.log("json:", csvData);
   };
   return (
     <div>
-      <input className="mt-[50%]" type="file" onChange={onUpload} />
+      <input
+        className="mt-[50%]"
+        accept=".csv"
+        type="file"
+        onChange={onUpload}
+      />
     </div>
   );
 };
