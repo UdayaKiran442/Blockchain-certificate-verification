@@ -2,7 +2,7 @@ import hero from "../assets/hero-comp.png";
 
 const Hero = () => {
   return (
-    <div className="flex items-center gap-10 justify-center hero-gradient">
+    <div className="flex items-center gap-10 p-14 justify-center hero-gradient">
       {/* hero text */}
       <div>
         <h1 className="text-4xl font-bold">

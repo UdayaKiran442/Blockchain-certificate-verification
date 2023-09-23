@@ -9,7 +9,7 @@ interface props {
 
 const AcademicHero = ({ image, title, text, buttonName }: props) => {
   return (
-    <div className="flex justify-center gap-44 academic-gradient whitespace-pre-line">
+    <div className="flex justify-center gap-44 p-14 academic-gradient whitespace-pre-line">
       <div>
         {/* hero image */}
         <img src={image} alt="" />
