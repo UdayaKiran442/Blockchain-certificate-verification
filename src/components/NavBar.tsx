@@ -1,15 +1,19 @@
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import connectToMetamask from "../utils/connectMetamask";
-
-import logo from "../assets/logo.png";
 import getAccounts from "../utils/getAccounts";
 
-const NavBar = () => {
+import { AccountContext, ContextObject } from "../context/Provider";
+
+import logo from "../assets/logo.png";
+
+const NavBar: React.FC = () => {
+  const { acc, setAcc } = useContext<ContextObject>(AccountContext);
   const connectWallet = async () => {
     await connectToMetamask();
-    const accounts: Array<string> | undefined = await getAccounts();
-    console.log("Accounts", accounts);
+    const accounts: Array<string> = await getAccounts();
+    setAcc(accounts[0]);
   };
 
   return (
@@ -67,7 +71,11 @@ const NavBar = () => {
               className="text-blue-500 border border-solid border-blue-500 rounded-xl"
               onClick={connectWallet}
             >
-              <p className="p-1">Connect to metamask</p>
+              {acc ? (
+                <p className="p-1">{acc}</p>
+              ) : (
+                <p className="p-1">Connect to metamask</p>
+              )}
             </button>
           </ul>
         </div>
