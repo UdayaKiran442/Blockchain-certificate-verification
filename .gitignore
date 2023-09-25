@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 contractAddress.ts
+abi.json

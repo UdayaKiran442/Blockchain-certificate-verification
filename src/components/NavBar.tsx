@@ -1,8 +1,17 @@
 import { NavLink } from "react-router-dom";
 
+import connectToMetamask from "../utils/connectMetamask";
+
 import logo from "../assets/logo.png";
+import getAccounts from "../utils/getAccounts";
 
 const NavBar = () => {
+  const connectWallet = async () => {
+    await connectToMetamask();
+    const accounts: Array<string> | undefined = await getAccounts();
+    console.log("Accounts", accounts);
+  };
+
   return (
     <div className="fixed w-full">
       <div className="flex justify-between p-2 bg-[#fbfbfb] shadow-md">
@@ -54,7 +63,10 @@ const NavBar = () => {
             </li>
           </ul>
           <ul>
-            <button className="text-blue-500 border border-solid border-blue-500 rounded-xl">
+            <button
+              className="text-blue-500 border border-solid border-blue-500 rounded-xl"
+              onClick={connectWallet}
+            >
               <p className="p-1">Connect to metamask</p>
             </button>
           </ul>
