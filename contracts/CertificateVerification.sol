@@ -52,7 +52,7 @@ contract CertificateVerification{
         return _registrar;
     }
 
-    function isOwner(address _address) public view returns (bool){
+    function _isOwner(address _address) public view returns (bool){
         if(_address == owner){
             return true;
         }

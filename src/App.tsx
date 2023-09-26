@@ -12,20 +12,29 @@ import Academia from "./pages/Academia";
 import Student from "./pages/Student";
 import Verifier from "./pages/Verifier";
 import UploadData from "./pages/UploadData";
+
 import { AccountContext, ContextObject } from "./context/Provider";
+
 import connectToMetamask from "./utils/connectMetamask";
 import getAccounts from "./utils/getAccounts";
 
 function App() {
-  const { acc, setAcc } = useContext<ContextObject>(AccountContext);
-  const getAcc = async () => {
-    acc && (await connectToMetamask());
-    const accounts: Array<string> = await getAccounts();
-    setAcc(accounts[0]);
-  };
+  const { acc, setAcc, setIsOwner, validateOwner } =
+    useContext<ContextObject>(AccountContext);
+
   useEffect(() => {
+    const getAcc = async () => {
+      acc && (await connectToMetamask());
+      const accounts: Array<string> = await getAccounts();
+      setAcc(accounts[0]);
+    };
+    const checkOwner = async () => {
+      const isTrueOwner: boolean = await validateOwner();
+      setIsOwner(isTrueOwner);
+    };
     getAcc();
-  }, []);
+    checkOwner();
+  }, [acc, setAcc, setIsOwner, validateOwner]);
   return (
     <>
       <NavBar />
@@ -37,6 +46,7 @@ function App() {
         <Route path="/academia/upload-student-data" element={<UploadData />} />
       </Routes>
       <Footer />
+      <p>{acc}</p>
     </>
   );
 }
