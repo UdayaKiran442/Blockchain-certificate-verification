@@ -31,6 +31,7 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const getAcc = async () => {
       acc && (await connectToMetamask());
       const accounts: Array<string> = await getAccounts();
@@ -45,12 +46,13 @@ function App() {
       const isTrueRegistrar: boolean = await validateRegistrar();
       setIsValidRegistrar(isTrueRegistrar);
     };
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
 
-    setIsLoading(true);
     getAcc();
     checkOwner();
     checkRegistrar();
-    setIsLoading(false);
   }, [
     acc,
     setAcc,
