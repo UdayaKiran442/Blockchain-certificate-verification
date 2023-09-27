@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -19,8 +19,15 @@ import connectToMetamask from "./utils/connectMetamask";
 import getAccounts from "./utils/getAccounts";
 
 function App() {
-  const { acc, setAcc, setIsOwner, validateOwner } =
-    useContext<ContextObject>(AccountContext);
+  const {
+    acc,
+    setAcc,
+    setIsOwner,
+    setIsValidRegistrar,
+    validateOwner,
+    validateRegistrar,
+  } = useContext<ContextObject>(AccountContext);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getAcc = async () => {
@@ -32,9 +39,30 @@ function App() {
       const isTrueOwner: boolean = await validateOwner();
       setIsOwner(isTrueOwner);
     };
+
+    const checkRegistrar = async () => {
+      const isTrueRegistrar: boolean = await validateRegistrar();
+      setIsValidRegistrar(isTrueRegistrar);
+    };
+
+    setIsLoading(true);
     getAcc();
     checkOwner();
-  }, [acc, setAcc, setIsOwner, validateOwner]);
+    checkRegistrar();
+    setIsLoading(false);
+  }, [
+    acc,
+    setAcc,
+    setIsOwner,
+    setIsValidRegistrar,
+    validateOwner,
+    validateRegistrar,
+  ]);
+
+  if (isLoading) {
+    return <p>Loading....</p>;
+  }
+
   return (
     <>
       <NavBar />
@@ -46,7 +74,6 @@ function App() {
         <Route path="/academia/upload-student-data" element={<UploadData />} />
       </Routes>
       <Footer />
-      <p>{acc}</p>
     </>
   );
 }
