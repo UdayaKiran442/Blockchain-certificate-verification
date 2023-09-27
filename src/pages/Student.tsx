@@ -15,6 +15,7 @@ const Student = () => {
   return (
     <div>
       <AcademicHero
+        isContractOwner={false}
         isAuthorised={false}
         image={student}
         text="Access Your Academic Awards at

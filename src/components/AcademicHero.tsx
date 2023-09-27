@@ -6,6 +6,7 @@ interface props {
   text: string;
   buttonName: string;
   isAuthorised: boolean;
+  isContractOwner: boolean;
 }
 
 const AcademicHero = ({
@@ -14,6 +15,7 @@ const AcademicHero = ({
   text,
   buttonName,
   isAuthorised,
+  isContractOwner,
 }: props) => {
   return (
     <div className="flex justify-center gap-44 p-14 academic-gradient whitespace-pre-line">
@@ -26,7 +28,11 @@ const AcademicHero = ({
         <h1 className="text-4xl font-bold mt-20">{title}</h1>
         <p className="text-xl font-light mt-5">{text}</p>
         <div>
-          <HeroButton isAuthorised={isAuthorised} title={buttonName} />
+          <HeroButton
+            isContractOwner={isContractOwner}
+            isAuthorised={isAuthorised}
+            title={buttonName}
+          />
         </div>
       </div>
     </div>

@@ -16,19 +16,25 @@ import transparency from "../assets/Transparency.svg";
 import authenticated from "../assets/Authentic.svg";
 
 const Academia = () => {
-  const { isValidRegistrar } = useContext<ContextObject>(AccountContext);
+  const { isValidRegistrar, isOwner } =
+    useContext<ContextObject>(AccountContext);
   return (
     <div>
       <AcademicHero
         buttonName={
-          isValidRegistrar ? "Upload student data" : "Connect to Wallet"
+          isOwner
+            ? "Assign Registrar"
+            : isValidRegistrar
+            ? "Upload student data"
+            : "Connect to Wallet"
         }
         image={academic}
         title="Let's Begin Your Digital 
           Transformational Journey 
           Through Blockchain Based NAD "
         text=" Now publish your student's academic awards easily!"
-        isAuthorised={isValidRegistrar ? true : false}
+        isAuthorised={isValidRegistrar}
+        isContractOwner={isOwner}
       />
       <HowToPublish
         cardImg2={fill}

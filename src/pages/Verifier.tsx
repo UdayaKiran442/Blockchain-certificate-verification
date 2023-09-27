@@ -14,6 +14,7 @@ const Verifier = () => {
   return (
     <div>
       <AcademicHero
+        isContractOwner={false}
         isAuthorised={false}
         buttonName="Verify Now"
         image={verifier}
