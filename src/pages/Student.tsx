@@ -15,6 +15,7 @@ const Student = () => {
   return (
     <div>
       <AcademicHero
+        isAuthorised={false}
         image={student}
         text="Access Your Academic Awards at
               Ease -ANYTIME! ANYWHERE!"

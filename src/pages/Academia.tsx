@@ -1,6 +1,10 @@
+import { useContext } from "react";
+
 import AcademiaBenifits from "../components/AcademiaBenifits";
 import AcademicHero from "../components/AcademicHero";
 import HowToPublish from "../components/HowToPublish";
+
+import { AccountContext, ContextObject } from "../context/Provider";
 
 import academic from "../assets/academia.png";
 import fill from "../assets/Prepare and upload.svg";
@@ -12,15 +16,19 @@ import transparency from "../assets/Transparency.svg";
 import authenticated from "../assets/Authentic.svg";
 
 const Academia = () => {
+  const { isValidRegistrar } = useContext<ContextObject>(AccountContext);
   return (
     <div>
       <AcademicHero
-        buttonName="Connect to Wallet"
+        buttonName={
+          isValidRegistrar ? "Upload student data" : "Connect to Wallet"
+        }
         image={academic}
         title="Let's Begin Your Digital 
           Transformational Journey 
           Through Blockchain Based NAD "
         text=" Now publish your student's academic awards easily!"
+        isAuthorised={isValidRegistrar ? true : false}
       />
       <HowToPublish
         cardImg2={fill}
