@@ -11,9 +11,11 @@ const HeroButton = ({
   return (
     <div>
       {isContractOwner ? (
-        <button className="text-white bg-primaryBlue rounded-full mt-7 py-3 px-6 ">
-          {title}
-        </button>
+        <Link to="/owner/assign-registrar">
+          <button className="text-white bg-primaryBlue rounded-full mt-7 py-3 px-6 ">
+            {title}
+          </button>
+        </Link>
       ) : isAuthorised ? (
         <Link to="/academia/upload-student-data">
           <button className="text-white bg-primaryBlue rounded-full mt-7 py-3 px-6 ">

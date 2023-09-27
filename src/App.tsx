@@ -12,6 +12,7 @@ import Academia from "./pages/Academia";
 import Student from "./pages/Student";
 import Verifier from "./pages/Verifier";
 import UploadData from "./pages/UploadData";
+import AssignRegistrar from "./pages/AssignRegistrar";
 
 import { AccountContext, ContextObject } from "./context/Provider";
 
@@ -72,6 +73,7 @@ function App() {
         <Route path="/student" element={<Student />} />
         <Route path="/verifier" element={<Verifier />} />
         <Route path="/academia/upload-student-data" element={<UploadData />} />
+        <Route path="/owner/assign-registrar" element={<AssignRegistrar />} />
       </Routes>
       <Footer />
     </>
