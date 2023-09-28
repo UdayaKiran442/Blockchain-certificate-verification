@@ -23,9 +23,11 @@ const HeroButton = ({
           </button>
         </Link>
       ) : (
-        <button className="text-white bg-primaryBlue rounded-full mt-7 py-3 px-6 ">
-          {title}
-        </button>
+        <Link to="/verify/credentials">
+          <button className="text-white bg-primaryBlue rounded-full mt-7 py-3 px-6 ">
+            {title}
+          </button>
+        </Link>
       )}
       {/* {isAuthorised ? (
         <Link to="/academia/upload-student-data">

@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 
 import contractInstance from "../utils/contractInstance";
+import web3 from "../utils/web3";
 
 import { AccountContext, ContextObject } from "../context/Provider";
-import web3 from "../utils/web3";
+
+import InputField from "../components/InputField";
 
 const AssignRegistrar: React.FC = () => {
   const [univName, setUnivName] = useState<string>("");
@@ -37,15 +39,13 @@ const AssignRegistrar: React.FC = () => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center h-[94.5vh] bg-secondaryWhite ">
-        <input
-          className="w-[30%] placeholder:p-2 placeholder:text-slate-400 placeholder:font-light rounded-md  border-primaryBlue border-2"
-          type="text"
+        <InputField
           placeholder="Enter university of registrar"
+          type="text"
           onChange={(e) => setUnivName(e.target.value)}
         />
         <br />
-        <input
-          className="w-[30%] placeholder:p-2 placeholder:text-slate-400 placeholder:font-light rounded-md  border-primaryBlue border-2"
+        <InputField
           type="text"
           placeholder="Enter wallet address of registrar"
           onChange={(e) => setAddress(e.target.value)}

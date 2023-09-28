@@ -13,6 +13,8 @@ import Student from "./pages/Student";
 import Verifier from "./pages/Verifier";
 import UploadData from "./pages/UploadData";
 import AssignRegistrar from "./pages/AssignRegistrar";
+import EnterCredentials from "./pages/EnterCredentials";
+import Certificate from "./pages/Certificate";
 
 import { AccountContext, ContextObject } from "./context/Provider";
 
@@ -78,21 +80,6 @@ function App() {
         <Route path="/academia" element={<Academia />} />
         <Route path="/student" element={<Student />} />
         <Route path="/verifier" element={<Verifier />} />
-        {/* {isValidRegistrar ? (
-          <Route
-            path="/academia/upload-student-data"
-            element={<UploadData />}
-          />
-        ) : (
-          <Route path="/" element={<Home />} />
-        )}
-
-        {isOwner ? (
-          <Route path="/owner/assign-registrar" element={<AssignRegistrar />} />
-        ) : (
-          <Route path="/" element={<Home />} />
-        )} */}
-
         {isOwner ? (
           <Route path="/owner/assign-registrar" element={<AssignRegistrar />} />
         ) : isValidRegistrar ? (
@@ -103,6 +90,8 @@ function App() {
         ) : (
           <Route path="/" element={<Home />} />
         )}
+        <Route path="/verify/credentials" element={<EnterCredentials />} />
+        <Route path="/view/certificate" element={<Certificate />} />
       </Routes>
       <Footer />
     </>
