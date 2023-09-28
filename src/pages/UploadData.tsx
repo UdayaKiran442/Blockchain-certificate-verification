@@ -1,12 +1,26 @@
+import { useContext, useEffect, useState } from "react";
 import Papa from "papaparse";
-import { useState } from "react";
+
+import contractInstance from "../utils/contractInstance";
+
+import { AccountContext, ContextObject } from "../context/Provider";
 
 interface CsvRow {
   [key: string]: string | number | boolean | null;
 }
 
+interface RegistrarObject {
+  universityName: string;
+  registrarAddress: string;
+}
+
 const UploadData = () => {
   const [csvData, setCsvData] = useState<CsvRow[]>([]);
+  const [registrar, setRegistrar] = useState<RegistrarObject>({
+    universityName: "",
+    registrarAddress: "",
+  });
+  const { acc, isValidRegistrar } = useContext<ContextObject>(AccountContext);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onUpload = (e: any) => {
     e.preventDefault();
@@ -20,6 +34,20 @@ const UploadData = () => {
     });
     console.log("json:", csvData);
   };
+
+  useEffect(() => {
+    const getRegistrarDetails = async () => {
+      const method = contractInstance.methods.getRegistrar(acc);
+      const registrarData = await method.call();
+      console.log("Registrar:", registrarData);
+      setRegistrar({
+        universityName: registrarData.universityName,
+        registrarAddress: registrarData.registrarAddress,
+      });
+    };
+    isValidRegistrar && getRegistrarDetails();
+  }, [acc, isValidRegistrar]);
+
   return (
     <div>
       <input
@@ -28,6 +56,7 @@ const UploadData = () => {
         type="file"
         onChange={onUpload}
       />
+      {registrar && <p>{registrar.universityName}</p>}
     </div>
   );
 };
