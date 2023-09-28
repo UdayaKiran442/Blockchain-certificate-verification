@@ -18,6 +18,7 @@ import { AccountContext, ContextObject } from "./context/Provider";
 
 import connectToMetamask from "./utils/connectMetamask";
 import getAccounts from "./utils/getAccounts";
+import detectAccountChange from "./utils/detectAccountChange";
 
 function App() {
   const {
@@ -53,6 +54,7 @@ function App() {
     getAcc();
     checkOwner();
     checkRegistrar();
+    detectAccountChange();
   }, [
     acc,
     setAcc,
