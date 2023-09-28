@@ -1,13 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
+import contractInstance from "../utils/contractInstance";
+
+import { AccountContext, ContextObject } from "../context/Provider";
+import web3 from "../utils/web3";
 
 const AssignRegistrar: React.FC = () => {
   const [univName, setUnivName] = useState<string>("");
   const [address, setAddress] = useState<string>("");
 
+  const { acc } = useContext<ContextObject>(AccountContext);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    console.log(univName, address);
+    try {
+      e.preventDefault();
+      console.log(univName, address);
+      const method = contractInstance.methods.assignRegistrar(
+        univName,
+        address
+      );
+      console.log("Assign registrar method:", method);
+      const tx = {
+        from: acc,
+        to: contractInstance.options.address,
+        gas: 3000000,
+        data: method.encodeABI(),
+      };
+      const response = await web3.eth.sendTransaction(tx);
+      console.log(response);
+    } catch (error) {
+      console.log("Error in assigning registrar:", error);
+    }
   };
 
   return (
