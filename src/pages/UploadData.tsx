@@ -37,13 +37,17 @@ const UploadData = () => {
 
   useEffect(() => {
     const getRegistrarDetails = async () => {
-      const method = contractInstance.methods.getRegistrar(acc);
-      const registrarData = await method.call();
-      console.log("Registrar:", registrarData);
-      setRegistrar({
-        universityName: registrarData.universityName,
-        registrarAddress: registrarData.registrarAddress,
-      });
+      try {
+        const method = contractInstance.methods.getRegistrar(acc);
+        const registrarData = await method.call();
+        console.log("Registrar:", registrarData);
+        setRegistrar({
+          universityName: registrarData.universityName,
+          registrarAddress: registrarData.registrarAddress,
+        });
+      } catch (error) {
+        console.log("Error in fetching details of registrar");
+      }
     };
     isValidRegistrar && getRegistrarDetails();
   }, [acc, isValidRegistrar]);
