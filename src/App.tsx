@@ -23,6 +23,8 @@ import detectAccountChange from "./utils/detectAccountChange";
 function App() {
   const {
     acc,
+    isOwner,
+    isValidRegistrar,
     setAcc,
     setIsOwner,
     setIsValidRegistrar,
@@ -76,8 +78,31 @@ function App() {
         <Route path="/academia" element={<Academia />} />
         <Route path="/student" element={<Student />} />
         <Route path="/verifier" element={<Verifier />} />
-        <Route path="/academia/upload-student-data" element={<UploadData />} />
-        <Route path="/owner/assign-registrar" element={<AssignRegistrar />} />
+        {/* {isValidRegistrar ? (
+          <Route
+            path="/academia/upload-student-data"
+            element={<UploadData />}
+          />
+        ) : (
+          <Route path="/" element={<Home />} />
+        )}
+
+        {isOwner ? (
+          <Route path="/owner/assign-registrar" element={<AssignRegistrar />} />
+        ) : (
+          <Route path="/" element={<Home />} />
+        )} */}
+
+        {isOwner ? (
+          <Route path="/owner/assign-registrar" element={<AssignRegistrar />} />
+        ) : isValidRegistrar ? (
+          <Route
+            path="/academia/upload-student-data"
+            element={<UploadData />}
+          />
+        ) : (
+          <Route path="/" element={<Home />} />
+        )}
       </Routes>
       <Footer />
     </>
