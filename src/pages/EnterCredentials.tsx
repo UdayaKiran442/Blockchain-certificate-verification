@@ -14,7 +14,7 @@ const EnterCredentials: React.FC = () => {
       const method = contractInstance.methods.getCertificate(univName, regNum);
       const certificate = await method.call();
       console.log("Certificate:", certificate);
-      navigate("/view/certificate", { state: { certificate } });
+      navigate("/view/certificate", { state: { certificate, univName } });
     } catch (error) {
       console.log("Error in fetching certificate", error);
     }
