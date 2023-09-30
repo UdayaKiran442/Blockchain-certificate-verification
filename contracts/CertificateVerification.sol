@@ -79,6 +79,7 @@ contract CertificateVerification{
     }
 
     function getCertificate(string calldata _universityName, string calldata _registrationNumber) public view returns(Certificate memory){
+        require(isAdded[_universityName][_registrationNumber],"Certificate with entered credentials is not present");
         Certificate storage _certificate = certificate[_universityName][_registrationNumber];
         return _certificate;
     }
