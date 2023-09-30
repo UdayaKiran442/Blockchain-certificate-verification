@@ -4,9 +4,11 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+
+import secure_storage from "../assets/secure_storage.png";
+import digital_signature from "../assets/digital_signature.png";
 
 interface CertificateObject {
   batch: string;
@@ -50,9 +52,11 @@ const Certificate: React.FC = () => {
   }, [location.state, certificateHash]);
   if (loading) return <p>Loading...</p>;
   return (
-    <div className="mt-5">
+    <div>
       <div>
-        <h1 className="text-center font-bold text-4xl ">Digital Certificate</h1>
+        <h1 className="text-center mt-20 font-bold text-4xl ">
+          Digital Certificate
+        </h1>
       </div>
       <div className="p-5">
         <div>
@@ -121,11 +125,33 @@ const Certificate: React.FC = () => {
         <div></div>
       </div>
 
-      <div>
+      <div className="flex justify-around mb-10">
         {/* securely stored on blockchain logo */}
-        <div></div>
+        <div>
+          <img
+            width={150}
+            className="rounded-full"
+            height={150}
+            src={secure_storage}
+            alt=""
+          />
+          <p className="bg-green-600 text-secondaryWhite pl-0 pr-6 -ml-12 rounded px-5">
+            Securely stored on blockchain{" "}
+          </p>
+        </div>
         {/* digitally signed logo */}
-        <div></div>
+        <div>
+          <img
+            width={150}
+            className="rounded-full"
+            height={150}
+            src={digital_signature}
+            alt=""
+          />
+          <p className="bg-green-600 text-secondaryWhite pl-0 pr-6 -ml-16 rounded px-5">
+            Digitally signed by Registrar of {location.state.univName}
+          </p>
+        </div>
       </div>
     </div>
   );
