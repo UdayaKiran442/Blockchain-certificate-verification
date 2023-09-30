@@ -11,12 +11,16 @@ const EnterCredentials: React.FC = () => {
   const [regNum, setRegNum] = useState<string>("");
   const handleSubmit = async () => {
     try {
+      if (univName === "" || regNum === "") {
+        alert("Fields cannot be empty");
+        return;
+      }
       const method = contractInstance.methods.getCertificate(univName, regNum);
       const certificate = await method.call();
       console.log("Certificate:", certificate);
       navigate("/view/certificate", { state: { certificate, univName } });
     } catch (error) {
-      console.log("Error in fetching certificate", error);
+      alert(error);
     }
   };
   return (
