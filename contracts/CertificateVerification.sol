@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.19;
 
 contract CertificateVerification{
     address public owner;
@@ -7,6 +7,7 @@ contract CertificateVerification{
         string universityName;
         string hash;
         string registrationNumber;
+        string photoHash;
     }
 
     struct Registrar{
@@ -59,7 +60,8 @@ contract CertificateVerification{
         return false;
     }
 
-    function addCertificate(string calldata _universityName, string calldata _registrationNumber, string calldata _hash) public {
+
+    function addCertificate(string calldata _universityName, string calldata _registrationNumber, string calldata _hash, string calldata _photoHash) public {
         require(!isAdded[_universityName][_registrationNumber],"Student already added");
         Registrar storage _registrar = registrars[_universityName][msg.sender];
         bool isValid = compareStrings(_registrar.universityName,_universityName);
@@ -67,7 +69,8 @@ contract CertificateVerification{
         Certificate memory newCertificate = Certificate({
             universityName:_universityName,
             hash:_hash,
-            registrationNumber:_registrationNumber
+            registrationNumber:_registrationNumber,
+            photoHash: _photoHash
         });
         certificate[_universityName][_registrationNumber] = newCertificate;
         isAdded[_universityName][_registrationNumber] = true;

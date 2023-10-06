@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/uday/Desktop/final-year-project/contracts/CertificateVerification.sol": {
-      "lastModificationDate": 1696055821397,
-      "contentHash": "4fb1515e2fdae78263e81d0ff4b0c3e0",
+      "lastModificationDate": 1696582958624,
+      "contentHash": "0c89d1b651d0fb12a7556bd157592255",
       "sourceName": "contracts/CertificateVerification.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -30,7 +30,7 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        "0.8.19"
       ],
       "artifacts": [
         "CertificateVerification"

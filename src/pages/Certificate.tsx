@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -15,29 +15,29 @@ interface CertificateObject {
   cgpa: string;
   degreeType: string;
   major: string;
-  photoHash: string;
   registrationNumber: string;
   studentName: string;
 }
 
 const Certificate: React.FC = () => {
   const [certificateHash, setCertificateHash] = useState<string>("");
+  const [photoHash, setPhotoHash] = useState<string>("");
   const [certificate, setCertificate] = useState<CertificateObject>({
     batch: "",
     cgpa: "",
     degreeType: "",
     major: "",
-    photoHash: "",
     registrationNumber: "",
     studentName: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
   const location = useLocation();
-  useEffect(() => {
+  useLayoutEffect(() => {
     setLoading(true);
     const { certificate } = location.state;
     console.log("Certificate", certificate);
     setCertificateHash(certificate.hash);
+    setPhotoHash(certificate.photoHash);
 
     const getCertificate = async () => {
       const response = await axios.get(
@@ -72,7 +72,7 @@ const Certificate: React.FC = () => {
                   </TableCell>
                   <TableCell rowSpan={6}>
                     <img
-                      src={`https://apricot-accepted-crow-745.mypinata.cloud/ipfs/${certificate.photoHash}`}
+                      src={`https://apricot-accepted-crow-745.mypinata.cloud/ipfs/${photoHash}`}
                       alt="Your Image"
                       className="ml-4"
                     />
