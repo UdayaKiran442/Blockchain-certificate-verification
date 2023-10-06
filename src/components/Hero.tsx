@@ -6,7 +6,7 @@ const Hero = () => {
       {/* hero text */}
       <div>
         <h1 className="text-4xl font-bold">
-          National Academic Repository
+          National Academic Depository
           <br />
           Authentic recognition for your achievements.
         </h1>
