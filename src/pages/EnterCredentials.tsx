@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import InputField from "../components/InputField";
@@ -12,15 +13,17 @@ const EnterCredentials: React.FC = () => {
   const handleSubmit = async () => {
     try {
       if (univName === "" || regNum === "") {
-        alert("Fields cannot be empty");
+        // alert("Fields cannot be empty");
+        message.error("Fields cannot be empty");
         return;
       }
       const method = contractInstance.methods.getCertificate(univName, regNum);
       const certificate = await method.call();
       console.log("Certificate:", certificate);
       navigate("/view/certificate", { state: { certificate, univName } });
+      message.success("Certificate fetched succesfully from blockchain");
     } catch (error) {
-      alert(error);
+      message.error("Invalid credentials");
     }
   };
   return (
