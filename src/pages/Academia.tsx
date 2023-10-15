@@ -26,7 +26,7 @@ const Academia = () => {
             ? "Assign Registrar"
             : isValidRegistrar
             ? "Upload student data"
-            : "Connect to Wallet"
+            : "You can only verify credentials"
         }
         image={academic}
         title="Let's Begin Your Digital 
