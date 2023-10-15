@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Loader from "./components/Loader";
 
 import Home from "./pages/Home";
 import Academia from "./pages/Academia";
@@ -69,7 +70,7 @@ function App() {
   ]);
 
   if (isLoading) {
-    return <p>Loading....</p>;
+    return <Loader />;
   }
 
   return (
