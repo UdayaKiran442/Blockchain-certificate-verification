@@ -1,8 +1,11 @@
-import { useContext } from "react";
+import { useContext, lazy, Suspense } from "react";
 
-import AcademiaBenifits from "../components/AcademiaBenifits";
+// import AcademiaBenifits from "../components/AcademiaBenifits";
 import AcademicHero from "../components/AcademicHero";
-import HowToPublish from "../components/HowToPublish";
+import Loader from "../components/Loader";
+// import HowToPublish from "../components/HowToPublish";
+const HowToPublish = lazy(() => import("../components/HowToPublish"));
+const AcademiaBenifits = lazy(() => import("../components/AcademiaBenifits"));
 
 import { AccountContext, ContextObject } from "../context/Provider";
 
@@ -36,33 +39,37 @@ const Academia = () => {
         isAuthorised={isValidRegistrar}
         isContractOwner={isOwner}
       />
-      <HowToPublish
-        cardImg2={fill}
-        cardImg1={register}
-        cardImg3={publish}
-        card1Title="Register"
-        card1Text="Register your academic institution by connecting wallet to NAD"
-        card2Text="Fill the form with student details"
-        card2Title="Prepare and Upload"
-        card3Text="Publish the certificates on Blockchain for student's access"
-        card3Title="Publish"
-        title="How to Publish"
-      />
-      <AcademiaBenifits
-        cardImg4={authenticated}
-        cardImg1={award}
-        cardImg2={secure}
-        cardImg3={transparency}
-        benifitHeading1="Valid Awards"
-        benifitText1="Digital Awards are legally valid under IT Act, 2000"
-        benifitHeading2="Secure"
-        benifitText2="Secure Issuance of Digital Awards in blockchain"
-        benifitHeading3="Transparency"
-        benifitText3="Efficient, effective, and transparent administration"
-        benifitHeading4="Authenticated by NAD"
-        benifitText4="All academic awards verification needs can be addressed by NAD"
-        title="Benifits"
-      />
+      <Suspense fallback={<Loader />}>
+        <HowToPublish
+          cardImg2={fill}
+          cardImg1={register}
+          cardImg3={publish}
+          card1Title="Register"
+          card1Text="Register your academic institution by connecting wallet to NAD"
+          card2Text="Fill the form with student details"
+          card2Title="Prepare and Upload"
+          card3Text="Publish the certificates on Blockchain for student's access"
+          card3Title="Publish"
+          title="How to Publish"
+        />
+      </Suspense>
+      <Suspense fallback={<Loader />}>
+        <AcademiaBenifits
+          cardImg4={authenticated}
+          cardImg1={award}
+          cardImg2={secure}
+          cardImg3={transparency}
+          benifitHeading1="Valid Awards"
+          benifitText1="Digital Awards are legally valid under IT Act, 2000"
+          benifitHeading2="Secure"
+          benifitText2="Secure Issuance of Digital Awards in blockchain"
+          benifitHeading3="Transparency"
+          benifitText3="Efficient, effective, and transparent administration"
+          benifitHeading4="Authenticated by NAD"
+          benifitText4="All academic awards verification needs can be addressed by NAD"
+          title="Benifits"
+        />
+      </Suspense>
     </div>
   );
 };
