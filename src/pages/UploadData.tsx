@@ -5,6 +5,7 @@ import axios from "axios";
 
 import contractInstance from "../utils/contractInstance";
 import { pinata_api_key, pinata_secret_api_key } from "../utils/pinataKeys";
+import web3 from "../utils/web3";
 
 import { AccountContext, ContextObject } from "../context/Provider";
 
@@ -42,6 +43,7 @@ const UploadData = () => {
     cgpa: "",
   });
   const [photoHash, setPhotoHash] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [certificateHash, setCertificateHash] = useState();
   const [imageFile, setImageFile] = useState();
   const { acc, isValidRegistrar } = useContext<ContextObject>(AccountContext);
@@ -63,14 +65,27 @@ const UploadData = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async () => {
-    console.log("Button clicked");
-    console.log(studentData);
-    if (imageFile) {
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      const resFile = await axios.post(
-        "https://api.pinata.cloud/pinning/pinFileToIPFS",
-        formData,
+    try {
+      setLoading(true);
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        const resFile = await axios.post(
+          "https://api.pinata.cloud/pinning/pinFileToIPFS",
+          formData,
+          {
+            headers: {
+              pinata_api_key,
+              pinata_secret_api_key,
+            },
+          }
+        );
+        console.log(resFile);
+        setPhotoHash(resFile.data.IpfsHash);
+      }
+      const resJson = await axios.post(
+        "https://api.pinata.cloud/pinning/pinJsonToIPFS",
+        studentData,
         {
           headers: {
             pinata_api_key,
@@ -78,22 +93,35 @@ const UploadData = () => {
           },
         }
       );
-      console.log(resFile);
-      setPhotoHash(resFile.data.IpfsHash);
+      setCertificateHash(resJson.data.IpfsHash);
+      const method = contractInstance.methods.addCertificate(
+        registrar.universityName,
+        studentData.registrationNumber,
+        certificateHash,
+        photoHash
+      );
+      const tx = {
+        from: acc,
+        to: contractInstance.options.address,
+        gas: 3000000,
+        data: method.encodeABI(),
+      };
+      const resposne = await web3.eth.sendTransaction(tx);
+      console.log("Add certificate response:", resposne);
+      setLoading(false);
+      setStudentData({
+        batch: "",
+        cgpa: "",
+        degree: "",
+        department: "",
+        registrationNumber: "",
+        studentName: "",
+      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setLoading(false);
+      alert(error.message);
     }
-    const resJson = await axios.post(
-      "https://api.pinata.cloud/pinning/pinJsonToIPFS",
-      studentData,
-      {
-        headers: {
-          pinata_api_key,
-          pinata_secret_api_key,
-        },
-      }
-    );
-    console.log(resJson);
-    setCertificateHash(resJson.data.IpfsHash);
-    console.log(photoHash, certificateHash);
   };
 
   useEffect(() => {
@@ -187,8 +215,9 @@ const UploadData = () => {
           type="submit"
           onClick={handleSubmit}
           className="bg-primaryBlue text-secondaryWhite px-8 py-2"
+          disabled={loading ? true : false}
         >
-          Upload Data
+          {loading ? "Uploading Data..." : "Upload Data"}
         </button>
       </div>
     </div>

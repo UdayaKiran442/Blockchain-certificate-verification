@@ -13,8 +13,8 @@ import digital_signature from "../assets/digital_signature.png";
 interface CertificateObject {
   batch: string;
   cgpa: string;
-  degreeType: string;
-  major: string;
+  degree: string;
+  department: string;
   registrationNumber: string;
   studentName: string;
 }
@@ -25,8 +25,8 @@ const Certificate: React.FC = () => {
   const [certificate, setCertificate] = useState<CertificateObject>({
     batch: "",
     cgpa: "",
-    degreeType: "",
-    major: "",
+    degree: "",
+    department: "",
     registrationNumber: "",
     studentName: "",
   });
@@ -36,7 +36,7 @@ const Certificate: React.FC = () => {
     setLoading(true);
     const { certificate } = location.state;
     console.log("Certificate", certificate);
-    setCertificateHash(certificate.hash);
+    setCertificateHash(certificate.certificateHash);
     setPhotoHash(certificate.photoHash);
 
     const getCertificate = async () => {
@@ -99,7 +99,7 @@ const Certificate: React.FC = () => {
                     <p className="font-semibold">Degree Type</p>
                   </TableCell>
                   <TableCell align="right">
-                    <p className="text-lg">{certificate.degreeType}</p>
+                    <p className="text-lg">{certificate.degree}</p>
                   </TableCell>
                 </TableRow>
                 <TableRow hover>
@@ -107,7 +107,7 @@ const Certificate: React.FC = () => {
                     <p className="font-semibold">Major</p>
                   </TableCell>
                   <TableCell align="right">
-                    <p className="text-lg">{certificate.major}</p>
+                    <p className="text-lg">{certificate.department}</p>
                   </TableCell>
                 </TableRow>
                 <TableRow hover>
