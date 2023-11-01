@@ -5,7 +5,7 @@ contract CertificateVerification{
     address public owner;
     struct Certificate{
         string universityName;
-        string hash;
+        string certificateHash;
         string registrationNumber;
         string photoHash;
     }
@@ -68,7 +68,7 @@ contract CertificateVerification{
         require(isValid,"Please add only certificates that belong to your unviersity");
         Certificate memory newCertificate = Certificate({
             universityName:_universityName,
-            hash:_hash,
+            certificateHash:_hash,
             registrationNumber:_registrationNumber,
             photoHash: _photoHash
         });
@@ -81,9 +81,10 @@ contract CertificateVerification{
         return keccak256(abi.encodePacked(a)) == keccak256(abi.encodePacked(b));
     }
 
-    function getCertificate(string calldata _universityName, string calldata _registrationNumber) public view returns(Certificate memory){
+    function getCertificate(string calldata _universityName, string calldata _registrationNumber) public returns(Certificate memory){
         require(isAdded[_universityName][_registrationNumber],"Certificate with entered credentials is not present");
         Certificate storage _certificate = certificate[_universityName][_registrationNumber];
+        emit CertificateFetched("Certificate fetched");
         return _certificate;
     }
 
