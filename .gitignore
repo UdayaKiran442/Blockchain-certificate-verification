@@ -25,3 +25,4 @@ dist-ssr
 
 contractAddress.ts
 abi.json
+pinataKeys.ts
