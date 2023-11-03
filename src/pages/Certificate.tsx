@@ -75,6 +75,8 @@ const Certificate: React.FC = () => {
                       src={`https://apricot-accepted-crow-745.mypinata.cloud/ipfs/${photoHash}`}
                       alt="Your Image"
                       className="ml-4"
+                      width={500}
+                      height={400}
                     />
                   </TableCell>
                 </TableRow>

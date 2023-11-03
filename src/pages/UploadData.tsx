@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import axios from "axios";
@@ -47,6 +48,7 @@ const UploadData = () => {
   const [certificateHash, setCertificateHash] = useState();
   const [imageFile, setImageFile] = useState();
   const { acc, isValidRegistrar } = useContext<ContextObject>(AccountContext);
+  const navigate = useNavigate();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (e: any) => {
@@ -109,18 +111,13 @@ const UploadData = () => {
       const resposne = await web3.eth.sendTransaction(tx);
       console.log("Add certificate response:", resposne);
       setLoading(false);
-      setStudentData({
-        batch: "",
-        cgpa: "",
-        degree: "",
-        department: "",
-        registrationNumber: "",
-        studentName: "",
-      });
+      alert("Data uploaded succesfully");
+      navigate("/academia");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setLoading(false);
       alert(error.message);
+      console.log(error);
     }
   };
 
@@ -214,7 +211,11 @@ const UploadData = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="bg-primaryBlue text-secondaryWhite px-8 py-2"
+          className={
+            !loading
+              ? "bg-primaryBlue text-secondaryWhite px-8 py-2"
+              : "bg-blue-600 text-secondaryWhite px-8 py-2"
+          }
           disabled={loading ? true : false}
         >
           {loading ? "Uploading Data..." : "Upload Data"}
